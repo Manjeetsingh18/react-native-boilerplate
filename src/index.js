@@ -126,13 +126,11 @@ const HomeTabsExpoler = createBottomTabNavigator({
     }
 });
 
-
 const SettingExpoler = createDrawerNavigator({
     Setting: {
         screen: HomeTabsExpoler
     }
 }, StackNavigatorOptions);
-
 
 
 const SignUpExpoler = createStackNavigator({
