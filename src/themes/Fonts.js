@@ -29,10 +29,10 @@ const lato = {
 
 const normalize = (size) => {
     if (pixelRatio == 2) {
-        if (SCREEN_WIDTH == 375) {
-            return size * (Platform.OS === 'ios' ? 1 : 1.02);
+        if (SCREEN_WIDTH >= 375) {
+            return size * (Platform.OS === 'ios' ? 1 : 1);
         }
-        return size * (Platform.OS === 'ios' ? 0.95 : 1);
+        return size * (Platform.OS === 'ios' ? 0.9 : 9);
     }
     if (pixelRatio == 3) {
         return size * (Platform.OS === 'ios' ? 1 : 1);
@@ -42,15 +42,15 @@ const normalize = (size) => {
 
 const size = {
     h1: normalize(38),
-    h2: 34,
-    h3: 30,
-    h4: 26,
-    h5: 20,
-    h6: 18,
-    input: 18,
-    regular: 17,
-    medium: 14,
-    small: 12,
+    h2: normalize(34),
+    h3: normalize(30),
+    h4: normalize(26),
+    h5: normalize(20),
+    h6: normalize(18),
+    input: normalize(18),
+    regular: normalize(17),
+    medium: normalize(14),
+    small: normalize(12),
     semismall: 8.5,
 };
 

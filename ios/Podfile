@@ -38,6 +38,28 @@ target 'hashmap' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
+
+  pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
+
+  pod 'Permission-BluetoothPeripheral', :path => "../node_modules/react-native-permissions/ios/BluetoothPeripheral.podspec"
+  pod 'Permission-Calendars', :path => "../node_modules/react-native-permissions/ios/Calendars.podspec"
+  pod 'Permission-Camera', :path => "../node_modules/react-native-permissions/ios/Camera.podspec"
+  pod 'Permission-Contacts', :path => "../node_modules/react-native-permissions/ios/Contacts.podspec"
+  pod 'Permission-FaceID', :path => "../node_modules/react-native-permissions/ios/FaceID.podspec"
+  pod 'Permission-LocationAlways', :path => "../node_modules/react-native-permissions/ios/LocationAlways.podspec"
+  pod 'Permission-LocationWhenInUse', :path => "../node_modules/react-native-permissions/ios/LocationWhenInUse.podspec"
+  pod 'Permission-MediaLibrary', :path => "../node_modules/react-native-permissions/ios/MediaLibrary.podspec"
+  pod 'Permission-Microphone', :path => "../node_modules/react-native-permissions/ios/Microphone.podspec"
+  pod 'Permission-Motion', :path => "../node_modules/react-native-permissions/ios/Motion.podspec"
+  pod 'Permission-Notifications', :path => "../node_modules/react-native-permissions/ios/Notifications.podspec"
+  pod 'Permission-PhotoLibrary', :path => "../node_modules/react-native-permissions/ios/PhotoLibrary.podspec"
+  pod 'Permission-Reminders', :path => "../node_modules/react-native-permissions/ios/Reminders.podspec"
+  pod 'Permission-Siri', :path => "../node_modules/react-native-permissions/ios/Siri.podspec"
+  pod 'Permission-SpeechRecognition', :path => "../node_modules/react-native-permissions/ios/SpeechRecognition.podspec"
+  pod 'Permission-StoreKit', :path => "../node_modules/react-native-permissions/ios/StoreKit.podspec"
+
   target 'hashmapTests' do
     inherit! :search_paths
     # Pods for testing

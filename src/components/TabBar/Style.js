@@ -15,7 +15,7 @@ export default StyleSheet.create({
     spotLight: {
         width: tabWidth,
         height: "100%",
-        backgroundColor: "rgba(255,255,255,0.4)",
+        backgroundColor: "rgba(0, 0, 0, 0.2)",
         borderRadius: 8
     },
     // spotLightInner: {
