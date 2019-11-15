@@ -84,18 +84,32 @@ const ProfileExpoler = createStackNavigator({
     }
 }, StackNavigatorOptions);
 
+const SettingExpoler = createStackNavigator({
+    Setting: {
+        screen: Setting
+    }
+}, StackNavigatorOptions);
 
-const HomeTabsExpoler = createBottomTabNavigator({
+
+const DashboardExpoler = createBottomTabNavigator({
     Home: {
         screen: HomeTabTopExpoler,
         navigationOptions: {
-            tabBarIcon: ({ tintColor }) => <Icons name="home" style={{ color: tintColor }} />
+            tabBarIcon: ({ tintColor }) => {
+                return (
+                    <Icons name="home" style={{ color: tintColor }} />
+                )
+            }
         }
     },
     Search: {
         screen: SearchExpoler,
         navigationOptions: {
-            tabBarIcon: ({ tintColor }) => <Icons name="search" style={{ color: tintColor }} />
+            tabBarIcon: ({ tintColor }) => {
+                return (
+                    <Icons name="search" style={{ color: tintColor }} />
+                )
+            }
         }
     },
     profile: {
@@ -109,15 +123,15 @@ const HomeTabsExpoler = createBottomTabNavigator({
         }
     },
     Menu: {
-        screen: ProfileExpoler,
-        navigationOptions: ({ navigation }) => ({
-            tabBarIcon: ({ tintColor }) => (
-                <Icons name="menu" style={{ color: tintColor }} />
-            ),
-            tabBarOnPress: () => { navigation.openDrawer() }
-        }),
+        screen: SettingExpoler,
+        navigationOptions: {
+            tabBarIcon: ({ tintColor }) => {
+                return (
+                    <Icons name="menu" style={{ color: tintColor }} />
+                )
+            }
+        },
     }
-
 }, {
     tabBarComponent: TabBar,
     tabBarOptions: {
@@ -126,11 +140,7 @@ const HomeTabsExpoler = createBottomTabNavigator({
     }
 });
 
-const SettingExpoler = createDrawerNavigator({
-    Setting: {
-        screen: HomeTabsExpoler
-    }
-}, StackNavigatorOptions);
+
 
 
 const SignUpExpoler = createStackNavigator({
@@ -154,7 +164,7 @@ const App = createSwitchNavigator(
             screen: SignUpExpoler,
         },
         Home: {
-            screen: SettingExpoler,
+            screen: DashboardExpoler,
         }
     },
     {
