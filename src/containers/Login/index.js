@@ -2,8 +2,9 @@ import React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Container, Content, Input } from "native-base";
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
+
+import { Network } from '../../components';
 import { Icons, Colors } from "../../themes";
 import { validateEmail, Message } from '../../utilities';
 import { Toast, DURATION, ActivityIndicator } from '../../libs';
@@ -56,72 +57,78 @@ class Login extends React.Component {
     }
 
     render() {
-        return (
-            <Container style={styles.conatiner}>
-                <Content>
-                    <View style={styles.loginViewStyle}>
-                        <Input
-                            placeholder={'Email'}
-                            autoCorrect={false}
-                            autoCapitalize={'none'}
-                            returnKeyType={'next'}
-                            ref={(input) => this._username = input}
-                            style={styles.inputStyle}
-                            keyboardType={'email-address'}
-                            onChangeText={(text) =>
-                                this.setState({ email: text })
-                            }
-                            onSubmitEditing={(event) => {
-                                this._password._root.focus()
-                            }} />
+        if (!this.props.network) {
+            return (
+                <Network />
+            )
+        } else {
+            return (
+                <Container style={styles.conatiner}>
+                    <Content>
+                        <View style={styles.loginViewStyle}>
+                            <Input
+                                placeholder={'Email'}
+                                autoCorrect={false}
+                                autoCapitalize={'none'}
+                                returnKeyType={'next'}
+                                ref={(input) => this._username = input}
+                                style={styles.inputStyle}
+                                keyboardType={'email-address'}
+                                onChangeText={(text) =>
+                                    this.setState({ email: text })
+                                }
+                                onSubmitEditing={(event) => {
+                                    this._password._root.focus()
+                                }} />
 
-                        <Input
-                            placeholder={'Password'}
-                            autoCorrect={false}
-                            secureTextEntry={true}
-                            style={styles.inputStyle}
-                            returnKeyType={'go'}
-                            ref={(input) => this._password = input}
-                            onChangeText={(text) =>
-                                this.setState({ password: text })
-                            }
-                            onSubmitEditing={() => {
-                                this.onPressLogin()
-                            }} />
+                            <Input
+                                placeholder={'Password'}
+                                autoCorrect={false}
+                                secureTextEntry={true}
+                                style={styles.inputStyle}
+                                returnKeyType={'go'}
+                                ref={(input) => this._password = input}
+                                onChangeText={(text) =>
+                                    this.setState({ password: text })
+                                }
+                                onSubmitEditing={() => {
+                                    this.onPressLogin()
+                                }} />
 
-                        <View style={styles.buttonViewStyle}>
+                            <View style={styles.buttonViewStyle}>
 
-                            <TouchableOpacity
-                                style={styles.touchButtonStyle}
-                                onPress={() => this.onPressTouchId()}>
-                                <Icons name={'finger-print'} style={styles.touchIconStyle} />
-                                <Text style={styles.touchTextStyle}>Login with Touch ID</Text>
-                            </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={styles.touchButtonStyle}
+                                    onPress={() => this.onPressTouchId()}>
+                                    <Icons name={'finger-print'} style={styles.touchIconStyle} />
+                                    <Text style={styles.touchTextStyle}>Login with Touch ID</Text>
+                                </TouchableOpacity>
 
-                            <TouchableOpacity
-                                style={styles.loginButtonStyle}
-                                onPress={() => this.onPressLogin()}>
-                                <Text style={styles.loginTextStyle}>Login</Text>
-                            </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={styles.loginButtonStyle}
+                                    onPress={() => this.onPressLogin()}>
+                                    <Text style={styles.loginTextStyle}>Login</Text>
+                                </TouchableOpacity>
 
-                            <TouchableOpacity
-                                style={styles.newUserButtonStyle}
-                                onPress={() => this.onPressNewUser()}>
-                                <Text style={styles.newUserTextStyle}>If you new user.</Text>
-                            </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={styles.newUserButtonStyle}
+                                    onPress={() => this.onPressNewUser()}>
+                                    <Text style={styles.newUserTextStyle}>If you new user.</Text>
+                                </TouchableOpacity>
 
+                            </View>
                         </View>
-                    </View>
-                </Content>
-                <Toast
-                    ref="toast"
-                    style={{ backgroundColor: Colors.charcoal }}
-                    fadeOutDuration={1000}
-                    opacity={0.8}
-                    textStyle={{ color: Colors.white }}
-                />
-            </Container>
-        )
+                    </Content>
+                    <Toast
+                        ref="toast"
+                        style={{ backgroundColor: Colors.charcoal }}
+                        fadeOutDuration={1000}
+                        opacity={0.8}
+                        textStyle={{ color: Colors.white }}
+                    />
+                </Container>
+            )
+        }
     }
 }
 

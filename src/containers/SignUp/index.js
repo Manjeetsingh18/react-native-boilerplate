@@ -137,11 +137,12 @@ class SignUp extends React.Component {
                                 value={this.state.password}
                                 returnKeyType={'next'}
                                 autoCapitalize={'none'}
+                                autoCorrect={true}
                                 placeholder={'Password'}
                                 underlineColorAndroid={"transparent"}
                                 style={styles.inputStyle} />
                             <Input
-                                autoCorrect={false}
+                                autoCorrect={true}
                                 secureTextEntry={true}
                                 onChangeText={(text) =>
                                     this.setState({ confirmPassword: text })

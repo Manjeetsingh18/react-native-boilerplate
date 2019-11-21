@@ -9,16 +9,16 @@ import {
     Profile,
     Setting
 } from './containers';
+import { connect } from 'react-redux';
 
-import {
-    createSwitchNavigator,
-    createAppContainer
-} from 'react-navigation';
+import { BackHandler } from 'react-native';
+import NetInfo from "@react-native-community/netinfo";
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 
 import { createStackNavigator } from 'react-navigation-stack';
-import { createDrawerNavigator } from 'react-navigation-drawer';
+// import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createMaterialTopTabNavigator, createBottomTabNavigator } from 'react-navigation-tabs';
-
+import { setIsConnected } from './stores/modules/network';
 import { TabBar } from './components';
 import { Colors, Fonts, Icons } from './themes';
 
@@ -155,7 +155,7 @@ const LoginExpoler = createStackNavigator({
     }
 }, StackNavigatorOptions);
 
-const App = createSwitchNavigator(
+const ExpolerContainer = createSwitchNavigator(
     {
         Login: {
             screen: LoginExpoler,
@@ -171,4 +171,54 @@ const App = createSwitchNavigator(
         initialRouteName: 'Login'
     });
 
-export default createAppContainer(App);
+const AppContainer = createAppContainer(ExpolerContainer);
+
+class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.exitApp = this.exitApp.bind(this);
+    }
+
+    //----------------------------
+    // Internet connectivity check
+    //----------------------------
+
+    componentDidMount() {
+
+        const dispatchConnected = isConnected => this.props.networkCheck(isConnected);
+
+        NetInfo.isConnected.fetch().then().done(() => {
+            NetInfo.isConnected.addEventListener('connectionChange', dispatchConnected);
+        });
+        BackHandler.addEventListener('hardwareBackPress', this.exitApp);
+    }
+
+    exitApp() {
+        BackHandler.exitApp()
+    }
+
+    // Remove the listener before removing
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress', this.exitApp);
+    }
+
+    render() {
+        return (
+            <AppContainer />
+        );
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        networkCheck: (isConnected) => {
+            dispatch(setIsConnected(isConnected))
+        }
+    }
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(App);

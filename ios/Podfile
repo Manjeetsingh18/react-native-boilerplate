@@ -60,6 +60,8 @@ target 'hashmap' do
   pod 'Permission-SpeechRecognition', :path => "../node_modules/react-native-permissions/ios/SpeechRecognition.podspec"
   pod 'Permission-StoreKit', :path => "../node_modules/react-native-permissions/ios/StoreKit.podspec"
 
+  pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
+
   target 'hashmapTests' do
     inherit! :search_paths
     # Pods for testing
